@@ -1,0 +1,12 @@
+aws_region          = "ap-southeast-1"
+project_name        = "nt548-lab01"
+vpc_cidr            = "10.0.0.0/16"
+public_subnet_cidr  = "10.0.1.0/24"
+private_subnet_cidr = "10.0.2.0/24"
+availability_zone   = "ap-southeast-1a"
+
+# Replace with your real public IP, for example: 113.x.x.x/32
+allowed_ssh_cidr = "YOUR_PUBLIC_IP/32"
+
+# Existing EC2 Key Pair name in AWS
+key_name = "YOUR_KEY_PAIR_NAME"
