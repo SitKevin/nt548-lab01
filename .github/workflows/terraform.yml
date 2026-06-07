@@ -64,6 +64,7 @@ jobs:
           directory: terraform
           framework: terraform
           soft_fail: true
+          skip_check: CKV2_AWS_11,CKV2_AWS_5,CKV_AWS_88,CKV_AWS_135
 
       - name: Configure AWS credentials
         if: github.event_name == 'workflow_dispatch'

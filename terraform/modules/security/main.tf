@@ -12,10 +12,26 @@ resource "aws_security_group" "public_ec2" {
   }
 
   egress {
-    description = "Allow all outbound traffic"
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
+    description = "SSH to private EC2 inside VPC"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = [var.vpc_cidr]
+  }
+
+  egress {
+    description = "HTTP outbound for package repositories"
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    description = "HTTPS outbound for package repositories"
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
@@ -38,10 +54,18 @@ resource "aws_security_group" "private_ec2" {
   }
 
   egress {
-    description = "Allow all outbound traffic through NAT Gateway"
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
+    description = "HTTP outbound through NAT Gateway"
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    description = "HTTPS outbound through NAT Gateway"
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
 

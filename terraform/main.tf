@@ -13,6 +13,7 @@ module "security" {
 
   project_name     = var.project_name
   vpc_id           = module.network.vpc_id
+  vpc_cidr         = var.vpc_cidr
   allowed_ssh_cidr = var.allowed_ssh_cidr
 }
 
