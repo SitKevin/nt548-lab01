@@ -19,3 +19,8 @@ override.tf.json
 .DS_Store
 .vscode/
 .idea/
+
+# Python
+.venv/
+__pycache__/
+.pytest_cache/

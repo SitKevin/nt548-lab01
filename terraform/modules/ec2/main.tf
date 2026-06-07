@@ -20,6 +20,16 @@ resource "aws_instance" "public" {
   vpc_security_group_ids      = [var.public_security_group]
   associate_public_ip_address = true
   key_name                    = var.key_name
+  monitoring                  = true
+
+  metadata_options {
+    http_endpoint = "enabled"
+    http_tokens   = "required"
+  }
+
+  root_block_device {
+    encrypted = true
+  }
 
   tags = {
     Name = "${var.project_name}-public-ec2"
@@ -33,6 +43,16 @@ resource "aws_instance" "private" {
   vpc_security_group_ids      = [var.private_security_group]
   associate_public_ip_address = false
   key_name                    = var.key_name
+  monitoring                  = true
+
+  metadata_options {
+    http_endpoint = "enabled"
+    http_tokens   = "required"
+  }
+
+  root_block_device {
+    encrypted = true
+  }
 
   tags = {
     Name = "${var.project_name}-private-ec2"

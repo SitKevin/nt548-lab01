@@ -1,0 +1,14 @@
+project:
+  name: nt548-lab02-cloudformation
+  regions:
+    - ap-southeast-1
+  parameters:
+    ProjectName: nt548-lab02-taskcat
+    AllowedSshCidr: 203.0.113.10/32
+    KeyName: nt548-lab-key
+
+tests:
+  default:
+    template: ./infrastructure.yaml
+    regions:
+      - ap-southeast-1

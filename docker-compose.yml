@@ -1,0 +1,18 @@
+services:
+  orders-service:
+    build:
+      context: ./microservices/orders-service
+    image: nt548/orders-service:local
+    ports:
+      - "8001:8000"
+
+  api-gateway:
+    build:
+      context: ./microservices/api-gateway
+    image: nt548/api-gateway:local
+    environment:
+      ORDERS_SERVICE_URL: http://orders-service:8000
+    ports:
+      - "8000:8000"
+    depends_on:
+      - orders-service
