@@ -6,13 +6,15 @@ phases:
       python: 3.11
     commands:
       - pip install --upgrade pip
-      - pip install cfn-lint taskcat
+      - pip install "setuptools<81" cfn-lint taskcat
   build:
     commands:
       - cfn-lint cloudformation/infrastructure.yaml
       - sed -i "s|203.0.113.10/32|${ALLOWED_SSH_CIDR}|" cloudformation/.taskcat.yml
       - sed -i "s|nt548-lab-key|${KEY_NAME}|" cloudformation/.taskcat.yml
+      - cd cloudformation
       - taskcat test run
+      - cd ..
 
 artifacts:
   files:
